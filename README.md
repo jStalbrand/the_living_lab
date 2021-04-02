@@ -5,5 +5,5 @@ npm update
 ```
 
 ```
-npm update
+npm test
 ```
