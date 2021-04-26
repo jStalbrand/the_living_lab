@@ -1,7 +1,3 @@
-//------------------------------------------------------------------------------
-// Constructor scope
-//------------------------------------------------------------------------------
-
 /**
  * Creates a new object.
  *
@@ -15,26 +11,18 @@
  */
 cop.scene.Menu = function() {
 
-    //--------------------------------------------------------------------------
-    // Super call
-    //--------------------------------------------------------------------------
-    
-    /**
-     * ...
-     */
+
+    this._logo = null;
+
+    this._buttons = null;
+
+ 
     rune.scene.Scene.call(this);
 };
-
-//------------------------------------------------------------------------------
-// Inheritance
-//------------------------------------------------------------------------------
 
 cop.scene.Menu.prototype = Object.create(rune.scene.Scene.prototype);
 cop.scene.Menu.prototype.constructor = cop.scene.Menu;
 
-//------------------------------------------------------------------------------
-// Override public prototype methods (ENGINE)
-//------------------------------------------------------------------------------
 
 /**
  * @inheritDoc
@@ -42,6 +30,11 @@ cop.scene.Menu.prototype.constructor = cop.scene.Menu;
 cop.scene.Menu.prototype.init = function() {
     rune.scene.Scene.prototype.init.call(this);
     
+    //startknapp 
+
+    console.log('menu: ', this)
+
+
     var text = new rune.text.BitmapField("Hello Menu!");
     text.autoSize = true;
     text.center = this.application.screen.center;
@@ -55,7 +48,11 @@ cop.scene.Menu.prototype.init = function() {
 cop.scene.Menu.prototype.update = function(step) {
     rune.scene.Scene.prototype.update.call(this, step);
     if(this.keyboard.justPressed("space")){
-        this.application.scenes.load([new cop.scene.Game()])
+        this.application.scenes.load([
+            new cop.scene.Game({
+                nrOfPlayers: 2
+            })
+        ])
     }
 };
 

@@ -1,6 +1,3 @@
-//------------------------------------------------------------------------------
-// Constructor scope
-//------------------------------------------------------------------------------
 
 /**
  * Creates a new object.
@@ -13,47 +10,34 @@
  * 
  * Game state.
  */
-cop.scene.Game = function() {
+cop.scene.Game = function(opt={nrOfPlayers: 1}) {
 
-
-    /**
-     * reference to the player entity
-     */
-    this._player = null;
+    //used to check if the game should be initiated as 1 player or co op
+    this.nrOfPlayers = opt.nrOfPlayers;
 
     this._players = null;
 
-    this._zombie = null;
-
     this._zombies = null;
 
-    /**
-     * reference to the ground
-     */
-    this._ground = null;
+    this.obstacle = null;
 
-    this.m_camera = null;
+    //current game score
+    this._score = null;
 
-    /**
-     * reference to the background
-     */
+    //graphic representation of the score
+    this._scoreView = null;
+    
+    // reference to the background
     this._background = null;
 
-
-
     rune.scene.Scene.call(this);
+
+
 };
 
-//------------------------------------------------------------------------------
-// Inheritance
-//------------------------------------------------------------------------------
 
 cop.scene.Game.prototype = Object.create(rune.scene.Scene.prototype);
 cop.scene.Game.prototype.constructor = cop.scene.Game;
-
-//------------------------------------------------------------------------------
-// Override public prototype methods (ENGINE)
-//------------------------------------------------------------------------------
 
 /**
  * @inheritDoc
@@ -61,22 +45,51 @@ cop.scene.Game.prototype.constructor = cop.scene.Game;
 cop.scene.Game.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
+    console.log('nr of players: ', this.nrOfPlayers);
     this.cameras.getCamera(0).debug = true;
     this.initCamera();
     this.initBackground();
-    console.log('screen: ', this.application.screen);
+    this.initEntities();
+
+};
+
+cop.scene.Game.prototype.initEntities = function() {
     
-    
-    //this._player = new Player();
-    this._players = new Players(this);
-    //this._zombie = new Zombie();
+    this._bullets = new Bullets(this);
+    this.groups.add(this._bullets);   
+   
+    this._players = new Players(this, this._bullets);
     this._zombies = new Zombies(this);
-   // this.stage.addChild(this._players);
+   
     this.groups.add(this._players);   
     this.groups.add(this._zombies);   
-     
-    //this.stage.addChild(this._zombie);
-    console.log('stage: ', this.stage);
+    
+};
+
+cop.scene.Game.prototype.initBackground = function() {
+   
+    this._background = new rune.display.Graphic(
+        0, 
+        0, 
+        800, 
+        400, 
+        "00FF00", 
+        "bakgrund2"
+    );
+
+        this.stage.addChild(this._background);
+};
+
+cop.scene.Game.prototype.initCamera = function() {
+   
+    this.cameras.getCamera(0).fade.opacity = 1.0;
+    this.cameras.getCamera(0).fade.in(1500);
+};
+
+cop.scene.Game.prototype.initObstacles = function(step) {
+    
+    this.obstacle = new Obstacle();
+    this.stage.addChild(this.obstacle);
 };
 
 /**
@@ -85,8 +98,6 @@ cop.scene.Game.prototype.init = function() {
 cop.scene.Game.prototype.update = function(step) {
     
     rune.scene.Scene.prototype.update.call(this, step);
-
-
 };
 
 /**
@@ -101,28 +112,8 @@ cop.scene.Game.prototype.dispose = function() {
     rune.scene.Scene.prototype.dispose.call(this);
 };
 
-cop.scene.Game.prototype.initBackground = function() {
+cop.scene.Game.prototype.onGameOver = function() {
    
-    this._background = new rune.display.Graphic(
-        0, 
-        0, 
-        400, 
-        300, 
-        "00FF00", 
-        "copsnrobbers_texture_background"
-    );
-        console.log('stage: ', this.stage);
-};
-cop.scene.Game.prototype.initCamera = function() {
-   
-    this.m_camera = this.cameras.add(this.cameras.create());
-    this.cameras.getCamera(0).fade.opacity = 1.0;
-    this.cameras.getCamera(0).fade.in(1500);
-    this.m_camera.bounderies = new rune.geom.Rectangle(
-        0,
-        0,
-        400,
-        300
-    );
+    this.application.scenes.load([new cop.scene.Menu()])
 
 };

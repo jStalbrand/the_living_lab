@@ -1,11 +1,6 @@
 
 
-//använda denna i game och initiera players och games i denna. Kan använda funktionalitet so gällerför båda i denna
-//och specifika saker i dem andra
 const Entities = function() {
-
-
-    this.entities = [];
 
 
 }
