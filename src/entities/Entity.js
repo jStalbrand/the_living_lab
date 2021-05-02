@@ -1,14 +1,19 @@
-
+/**
+ * 
+ * @constructor
+ * 
+ * @class
+ * @classdesc
+ * 
+ * Generic entity class.
+ */
 const Entity = function(xPos, yPos, width, height, texture) {
 
     this.health = 100;
-    this.damage = null;
     this.texture = texture;
     this.direction = 'RIGHT';
-    
+    this.prevCoords = {x: 0, y: 0};
     rune.physics.Body.call(this, xPos, yPos, width, height, '', texture);
-    this.prevCoords = {x: this.velocity.x, y: this.velocity.y}
-    this.init();
 
 }
 
@@ -17,8 +22,18 @@ Entity.prototype.constructor = Entity;
 
 Entity.prototype.init = function() {
     this.initHitbox();
+    this.initHealthBar();
     rune.physics.Body.prototype.init.call(this);
 }
+
+Entity.prototype.initHealthBar = function() {
+
+    this.addChild(new HealthBar());
+    console.log('entity: ', this);
+
+}
+
+
 Entity.prototype.update = function(step) {
 
     rune.physics.Body.prototype.update.call(this, step);
@@ -39,26 +54,19 @@ Entity.prototype.initAnimation = function() {
 }
 */
 
+/**
+ * inititalize entity hitbox
+ */
 Entity.prototype.initHitbox = function() {
     
     this.hitbox.set(
         5,  
-        35, 
-        15,  
-        10   
+        60, 
+        40,  
+        40   
     );
 
 }
-
-Entity.prototype.checkHealth = function() {
-    
-    if(this.health === 0){
-        console.log('dead');
-    }
-    
-
-}
-
 
 Entity.prototype.moveLeft = function() {
 
@@ -87,7 +95,9 @@ Entity.prototype.moveDown = function() {
 }
 
 
-
+/**
+ * Make sure the entity is inside bounderies.
+ */
 Entity.prototype.updateBounderies = function() {
 
     var camera = this.application.scenes.selected.cameras.getCamera(0);
@@ -98,10 +108,12 @@ Entity.prototype.updateBounderies = function() {
 
         if (this.bottom > camera.height) this.bottom = camera.height;
         
-        else if (this.top < 25) this.top = 25;
+        else if (this.top < 35) this.top = 35;
 }
 
-
+/**
+ * update entity animation
+ */
 Entity.prototype.updateAnimation = function() {
 
     if(this.velocity.x !== 0 && this.velocity.y === 0){
@@ -127,6 +139,13 @@ Entity.prototype.updateAnimation = function() {
 
 
     }
+}
+Entity.prototype.isDead = function() {
+
+    if(this.health === 0){
+        return true;
+    }
+    return false;
 }
 
 

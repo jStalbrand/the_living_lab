@@ -52,7 +52,7 @@ cop.data.Resources.prototype.m_construct = function() {
     this.create("copsnrobbers_texture_background", "/Users/jake/Desktop/cop/asset/copsnrobbers_texture_background.png")
     this.create("bakgrund2", "/Users/jake/Desktop/cop/asset/bakgrund2.png")
     this.create("bord", "/Users/jake/Desktop/cop/asset/bord.png")
-    this.create("z1", "/Users/jake/Desktop/cop/asset/z1.png")
+    this.create("z1sprite", "/Users/jake/Desktop/cop/asset/z1sprite.png")
     this.create("bob", "/Users/jake/Desktop/cop/asset/bob.png")
     this.create("fulltliv", "/Users/jake/Desktop/cop/asset/fulltliv.png")
     this.create("skott", "/Users/jake/Desktop/cop/asset/skott.png")
@@ -60,6 +60,15 @@ cop.data.Resources.prototype.m_construct = function() {
     this.create("proff1sprite", "/Users/jake/Desktop/cop/asset/proff1sprite.png")
     this.create("sprite1", "/Users/jake/Desktop/cop/asset/sprite1.png")
     this.create("sprite2", "/Users/jake/Desktop/cop/asset/sprite2.png")
-
+    this.create("bakgrundstor", "/Users/jake/Desktop/cop/asset/bakgrundstor.png")
+    this.create("gameover", "/Users/jake/Desktop/cop/asset/gameover.png")
+    this.create("single-player", "/Users/jake/Desktop/cop/asset/single-player.png")
+    this.create("multi-player", "/Users/jake/Desktop/cop/asset/multi-player.png")
+    this.create("high-score", "/Users/jake/Desktop/cop/asset/high-score.png")
+    this.create("howtoplaymenu", "/Users/jake/Desktop/cop/asset/howtoplaymenu.png")
+    this.create("bakgrundmenu", "/Users/jake/Desktop/cop/asset/bakgrundmenu.png")
+    this.create("howtoplay", "/Users/jake/Desktop/cop/asset/howtoplay.png")
+    this.create("pil", "/Users/jake/Desktop/cop/asset/pil.png")
+    
 
 }

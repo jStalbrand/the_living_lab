@@ -3,12 +3,11 @@
 const Player = function(xPos, yPos, bullets) {
 
     
-    Entity.call(this, xPos, yPos, 25, 45, 'sprite1');
-    this.speed = 2;
+    Entity.call(this, xPos, yPos, 50, 100, 'sprite1');
+    this.speed = 4;
     this.acceleration = 0.3;
     this.bullets = bullets;
-    console.log('bullets game: ', this.bullets._game)
-    console.log('player: ', this);
+
     this._init();
 }
 
@@ -17,7 +16,6 @@ Player.prototype.constructor = Player;
 
 Player.prototype._init = function() {
 
-    console.log('player: ', this);
     this._initAnimation();
     this._initVelocity();
 }
@@ -99,10 +97,7 @@ Player.prototype._initVelocity = function() {
 
 Player.prototype.checkHealth = function() {
     
-    if(this.health === 0){
-        this.application.scenes.selected.onGameOver();
-    }
-   
+    this.health === 0 && this.application.scenes.selected.onGameOver(); 
     
 };
 

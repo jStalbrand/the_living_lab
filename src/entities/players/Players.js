@@ -15,15 +15,13 @@ Players.prototype.constructor = Players;
 
 Players.prototype.init = function() {
 
-    console.log('players: ', this);
-
     rune.display.DisplayGroup.prototype.init.call(this);
     this.initPlayers();
 }
 
 Players.prototype.initPlayers = function() {
 
-    var player = new Player(80,120, this.bullets);
+    var player = new Player(50,120, this.bullets);
     this.addChild(player);
 }
 

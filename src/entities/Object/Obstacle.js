@@ -2,7 +2,6 @@
 
 const Obstacle = function() {
 
-   // this.init();
     rune.display.Sprite.call(this, 50, 150, 25, 15, '00FF00', 'bord');
 }
 

@@ -45,11 +45,13 @@ cop.scene.Game.prototype.constructor = cop.scene.Game;
 cop.scene.Game.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
-    console.log('nr of players: ', this.nrOfPlayers);
+    console.log('game: ', this);
+    this.mouse.enable = false;
     this.cameras.getCamera(0).debug = true;
     this.initCamera();
     this.initBackground();
     this.initEntities();
+    //this.initObstacles();
 
 };
 
@@ -68,22 +70,16 @@ cop.scene.Game.prototype.initEntities = function() {
 
 cop.scene.Game.prototype.initBackground = function() {
    
-    this._background = new rune.display.Graphic(
-        0, 
-        0, 
-        800, 
-        400, 
-        "00FF00", 
-        "bakgrund2"
-    );
+    this._background = new Background();
 
-        this.stage.addChild(this._background);
+    this.stage.addChild(this._background);
 };
 
 cop.scene.Game.prototype.initCamera = function() {
    
     this.cameras.getCamera(0).fade.opacity = 1.0;
-    this.cameras.getCamera(0).fade.in(1500);
+    this.cameras.getCamera(0).fade.in(100);
+     
 };
 
 cop.scene.Game.prototype.initObstacles = function(step) {
@@ -105,15 +101,11 @@ cop.scene.Game.prototype.update = function(step) {
  */
 cop.scene.Game.prototype.dispose = function() {
    
-    //this._player.parent.removeChild(this._player);
-    // this._player.dispose();
-    // this._player = null;
-    //superanrop bör vara sist i denna metod
     rune.scene.Scene.prototype.dispose.call(this);
 };
 
 cop.scene.Game.prototype.onGameOver = function() {
    
-    this.application.scenes.load([new cop.scene.Menu()])
+    this.application.scenes.load([new cop.scene.GameOver()])
 
 };

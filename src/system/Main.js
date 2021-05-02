@@ -10,8 +10,6 @@
  */
 cop.system.Main = function() {
 
-    this.logo = null;
-    
 
     rune.system.Main.call(this, {
 
@@ -20,10 +18,33 @@ cop.system.Main = function() {
         scene:          cop.scene.Menu,
         resources:      cop.data.Resources,
         useKeyboard:    true,
-        debug:          true
-
+        useMouse:       true,
+        debug:          true,
+        screenResolutionX: 1280,
+        screenResolutionY: 720,
+        frameRate: 30
+        
+       
     });
 };
 
 cop.system.Main.prototype = Object.create(rune.system.Main.prototype);
 cop.system.Main.prototype.constructor = cop.system.Main;
+
+cop.system.Main.prototype.gotoMenu = function() {
+
+    this.application.scenes.load([new cop.scene.Menu()])
+}
+cop.system.Main.prototype.gotoHowtoPlay = function() {
+
+    this.application.scenes.load([new cop.scene.HowtoPlay()])
+}
+cop.system.Main.prototype.startSinglePlayer = function() {
+
+    this.application.scenes.load([new cop.scene.Game({nrOfPlayers: 1})])
+}
+cop.system.Main.prototype.startMultiPlayer = function() {
+
+    this.application.scenes.load([new cop.scene.Game({nrOfPlayers: 2})])
+}
+

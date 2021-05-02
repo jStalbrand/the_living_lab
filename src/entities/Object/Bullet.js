@@ -29,16 +29,16 @@ const Bullet = function(xPos, yPos, direction) {
     rune.display.DisplayObject.prototype.update.call(this, step);
     switch (this.direction) {
         case 'RIGHT':
-            this.x += 5;
+            this.x += 15;
             break;
         case 'LEFT':
-            this.x -= 5;
+            this.x -= 15;
             break;
         case 'TOP':
-            this.y -= 5;
+            this.y -= 15;
             break;
         case 'DOWN':
-            this.y += 5;
+            this.y += 15;
             break;
         default:
             break;
