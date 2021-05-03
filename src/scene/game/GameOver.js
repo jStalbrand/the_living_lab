@@ -10,19 +10,15 @@
  * 
  * GameOver state.
  */
- cop.scene.GameOver = function(opt={nrOfPlayers: 1}) {
+ cop.scene.GameOver = function() {
 
-    //used to check if the GameOver should be initiated as 1 player or co op
-    this.nrOfPlayers = opt.nrOfPlayers;
-
-    this._players = null;
-
-    this._zombies = null;
-
-    this.obstacle = null;
-
+    
     //current GameOver score
     this._score = null;
+
+    this.retryButton = null;
+
+    this.menuButton = null;
 
     //graphic representation of the score
     this._scoreView = null;
@@ -45,7 +41,19 @@ cop.scene.GameOver.prototype.constructor = cop.scene.GameOver;
 cop.scene.GameOver.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
+    this.mouse.enable = true;
     this.initBackground();
+    this.initButtons();
+};
+
+cop.scene.GameOver.prototype.initButtons = function() {
+    
+    this.retryButton = new Button('playagain', 450, 450, 394, 76, this.application.startSinglePlayer)
+    this.menuButton = new Button('backtomenu', 450, 550, 394, 76, this.application.gotoMenu)
+    
+    this.stage.addChild(this.retryButton);
+    this.stage.addChild(this.menuButton);
+    
 };
 
 cop.scene.GameOver.prototype.initBackground = function() {

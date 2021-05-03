@@ -69,6 +69,7 @@ cop.data.Resources.prototype.m_construct = function() {
     this.create("bakgrundmenu", "/Users/jake/Desktop/cop/asset/bakgrundmenu.png")
     this.create("howtoplay", "/Users/jake/Desktop/cop/asset/howtoplay.png")
     this.create("pil", "/Users/jake/Desktop/cop/asset/pil.png")
+    this.create("playagain", "/Users/jake/Desktop/cop/asset/playagain.png")
+    this.create("backtomenu", "/Users/jake/Desktop/cop/asset/backtomenu.png")
     
-
 }

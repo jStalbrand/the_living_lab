@@ -39,7 +39,7 @@ cop.scene.HowtoPlay.prototype.initBackground = function() {
 };
 cop.scene.HowtoPlay.prototype.initButtons = function() {
     
-    this.backButton = new Button('pil', 50, 15, 210, 90, this.application.gotoMenu)
+    this.backButton = new Button('pil', 50, 25, 210, 90, this.application.gotoMenu)
     this.stage.addChild(this.backButton);
 };
 
