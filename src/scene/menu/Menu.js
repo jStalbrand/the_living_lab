@@ -20,6 +20,7 @@ cop.scene.Menu = function() {
     this.highscoreButton = null;
 
     this.background = null;
+    this.backgroundSound = null;
 
     rune.scene.Scene.call(this);
 };
@@ -33,18 +34,39 @@ cop.scene.Menu.prototype.constructor = cop.scene.Menu;
 cop.scene.Menu.prototype.init = function() {
     rune.scene.Scene.prototype.init.call(this);
     this.mouse.enable = true;
-    this.initBackground();
-    this.initButtons();
+    this._initBackground();
+    this._initButtons();
+    //this._initSounds();
 };
 
-cop.scene.Menu.prototype.initBackground = function() {
+cop.scene.Menu.prototype._initSounds = function() {
+
+    this.application.sounds.dispose();
+    this.application.sounds = new rune.media.Sounds();
+    console.log(' sound', this.application.sounds)
+    /*
+        if(this.application.sounds.master.paused === true){
+            console.log('true');
+            this.application.sounds.master.resume();
+        }
+        else{
+            this.backgroundSound = this.application.sounds.master.get('menu'); 
+            this.backgroundSound.play();
+
+        }
+        */
+        //this.backgroundSound = this.application.sounds.master.get("menu");
+    
+};
+
+
+cop.scene.Menu.prototype._initBackground = function() {
     
     this.background = new Background('bakgrundmenu');
     this.stage.addChild(this.background);
-    
 };
 
-cop.scene.Menu.prototype.initButtons = function(step) {
+cop.scene.Menu.prototype._initButtons = function(step) {
 
     this.singleplayerButton = new Button('single-player', 700, 250, 394, 76, this.application.startSinglePlayer)
     this.multiplayerButton = new Button('multi-player', 700, 350, 394, 76, this.application.startMultiPlayer)

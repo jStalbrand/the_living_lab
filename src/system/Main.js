@@ -19,7 +19,7 @@ cop.system.Main = function() {
         resources:      cop.data.Resources,
         useKeyboard:    true,
         useMouse:       true,
-        debug:          true,
+        debug:          false,
         screenResolutionX: 1280,
         screenResolutionY: 720,
         frameRate: 30

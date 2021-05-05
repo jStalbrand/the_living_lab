@@ -35,7 +35,6 @@ Bullets.prototype.onCollision = function(zombie, bullet) {
     this.removeChild(bullet, true);
     zombie.health -= 50;
 
-    console.log('zombie health: ', zombie.health); 
 }
 
 Bullets.prototype.add = function(xPos, yPos, direction) {
@@ -44,7 +43,6 @@ Bullets.prototype.add = function(xPos, yPos, direction) {
 }
 Bullets.prototype.dispose = function(bullet) {
    
-    console.log('bullet dispose');
    // this.parent.removeChild(bullet);
     //this._player.parent.removeChild(this._player);
     // this._player.dispose();

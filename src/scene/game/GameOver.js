@@ -26,6 +26,7 @@
     // reference to the background
     this._background = null;
 
+
     rune.scene.Scene.call(this);
 
 
@@ -42,6 +43,8 @@ cop.scene.GameOver.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
     this.mouse.enable = true;
+    this.application.sounds.music.volume = 0;
+    this.application.sounds.master.volume = 1;
     this.initBackground();
     this.initButtons();
 };

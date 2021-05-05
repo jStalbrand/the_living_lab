@@ -71,5 +71,16 @@ cop.data.Resources.prototype.m_construct = function() {
     this.create("pil", "/Users/jake/Desktop/cop/asset/pil.png")
     this.create("playagain", "/Users/jake/Desktop/cop/asset/playagain.png")
     this.create("backtomenu", "/Users/jake/Desktop/cop/asset/backtomenu.png")
+    this.create("nyttbord", "/Users/jake/Desktop/cop/asset/nyttbord.png")
+    this.create("nyttbord2", "/Users/jake/Desktop/cop/asset/nyttbord2.png")
+    this.create("nyttbord3", "/Users/jake/Desktop/cop/asset/nyttbord3.png")
+    this.create("z2sprite", "/Users/jake/Desktop/cop/asset/z2sprite.png")
+    
+    
+    this.create("shoot-sound", "/Users/jake/Desktop/cop/asset/sounds/shoot.mp3")
+    this.create("game-sound", "/Users/jake/Desktop/cop/asset/sounds/game.wav")
+    this.create("zombie", "/Users/jake/Desktop/cop/asset/sounds/zombie.wav")
+    this.create("menu", "/Users/jake/Desktop/cop/asset/sounds/menu.mp3")
+    
     
 }

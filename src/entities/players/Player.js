@@ -7,6 +7,7 @@ const Player = function(xPos, yPos, bullets) {
     this.speed = 4;
     this.acceleration = 0.3;
     this.bullets = bullets;
+    this.shootSound = null;
 
     this._init();
 }
@@ -16,27 +17,43 @@ Player.prototype.constructor = Player;
 
 Player.prototype._init = function() {
 
-    this._initAnimation();
+    this._initAnimations();
+    this._initHitbox();
     this._initVelocity();
+    this._initSounds();
 }
-Player.prototype._initAnimation = function() {
 
-    this.animations.add('walkSide', [0,1,2,3], 10, true);
-    this.animations.add('walkDown', [4,5,6,7], 10, true);
-    this.animations.add('walkUp', [8,9,10,11], 10, true);
-    this.animations.add('standSide', [0], 0, true);
-    this.animations.add('standDown', [4], 0, true);
-    this.animations.add('standUp', [8], 0, true);
+Player.prototype._initHitbox = function() {
+
+    this.hitbox.set(
+        5,  
+        60, 
+        36,  
+        40   
+    );
+}
+
+Player.prototype._initVelocity = function() {
     
+    this.velocity.drag.x = 0.008;
+    this.velocity.drag.y = 0.008;
+    this.velocity.max.x = this.speed;
+    this.velocity.max.y = this.speed;
     
+};
+
+Player.prototype._initSounds = function() {
+
+    this.shootSound = this.application.sounds.music.get("shoot-sound");
 }
 
 Player.prototype.update = function(step) {
 
     Entity.prototype.update.call(this, step);
-    this.checkHealth();
+
+    this._checkHealth();
     this._updateInput(step);
-    this._updateAnimations(step);
+    this._updateAnimation();
 }
 
 Player.prototype._updateInput = function(step) {
@@ -62,14 +79,11 @@ Player.prototype._updateInput = function(step) {
     }
     
 }
-Player.prototype._updateAnimations = function(step) {
-    
-    
 
-    
-
-}
 Player.prototype.shoot = function() {
+
+    this.shootSound.stop();
+    this.shootSound.play();
 
     if(this.direction === 'LEFT'){
         this.bullets.addChild(new Bullet(this.centerX - 15, this.centerY + 5, this.direction))
@@ -84,21 +98,13 @@ Player.prototype.shoot = function() {
         this.bullets.addChild(new Bullet(this.centerX - 5, this.centerY + 5, this.direction))
     }
 
+
 }
 
-Player.prototype._initVelocity = function() {
+Player.prototype._checkHealth = function() {
     
-    this.velocity.drag.x = 0.008;
-    this.velocity.drag.y = 0.008;
-    this.velocity.max.x = this.speed;
-    this.velocity.max.y = this.speed;
-    
-};
-
-Player.prototype.checkHealth = function() {
-    
+    Entity.prototype._checkHealth.call(this);
     this.health === 0 && this.application.scenes.selected.onGameOver(); 
-    
 };
 
 

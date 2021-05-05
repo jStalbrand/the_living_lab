@@ -21,7 +21,7 @@ Players.prototype.init = function() {
 
 Players.prototype.initPlayers = function() {
 
-    var player = new Player(50,120, this.bullets);
+    var player = new Player(250,220, this.bullets);
     this.addChild(player);
 }
 
