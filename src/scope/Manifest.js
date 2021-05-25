@@ -5,16 +5,16 @@
 /**
  * The application namespace.
  * 
- * @namespace cop
+ * @namespace theLivingLab
  */
-var cop = function() {
+var theLivingLab = function() {
 
     //--------------------------------------------------------------------------
-    // Public static scope
+    // Public static stheLivingLabe
     //--------------------------------------------------------------------------
     
     /**
-     * Public scope.
+     * Public stheLivingLabe.
      *
      * @type {Object}
      * @private
@@ -25,11 +25,58 @@ var cop = function() {
     // Package structure
     //--------------------------------------------------------------------------
     
+
+    /**
+     * ...
+     *
+     * @namespace util
+     * @memberof theLivingLab
+     * @since 1.0
+     */
+     m_this.util = {};
+
+    /**
+     * ...
+     *
+     * @namespace ui
+     * @memberof theLivingLab
+     * @since 1.0
+     */
+     m_this.ui = {};
+
+    /**
+     * ...
+     *
+     * @namespace state
+     * @memberof theLivingLab
+     * @since 1.0
+     */
+     m_this.state = {};
+
+    /**
+     * ...
+     *
+     * @namespace geom
+     * @memberof theLivingLab
+     * @since 1.0
+     */
+     m_this.geom = {};
+
+
+    /**
+     * ...
+     *
+     * @namespace entity
+     * @memberof theLivingLab
+     * @since 1.0
+     */
+     m_this.entity = {};
+
     /**
      * ...
      *
      * @namespace data
-     * @memberof cop
+     * @memberof theLivingLab
      * @since 1.0
      */
     m_this.data = {};
@@ -38,7 +85,7 @@ var cop = function() {
      * ...
      *
      * @namespace scene
-     * @memberof cop
+     * @memberof theLivingLab
      * @since 1.0
      */
     m_this.scene = {};
@@ -47,17 +94,17 @@ var cop = function() {
      * ...
      *
      * @namespace system
-     * @memberof cop
+     * @memberof theLivingLab
      * @since 1.0
      */
     m_this.system = {};
 
     //--------------------------------------------------------------------------
-    // Return public scope object
+    // Return public stheLivingLabe object
     //--------------------------------------------------------------------------
 
     /**
-     * Public scope.
+     * Public stheLivingLabe.
      */
     return m_this;
 

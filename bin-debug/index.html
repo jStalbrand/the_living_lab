@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>cop</title>
+        <title>theLivingLab</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         
         <!-- SOFTWARE DEVELOPMENT KIT -->
@@ -10,32 +10,49 @@
         <!-- APPLICATION SOURCE CODE -->
         <script src="./../src/scope/Manifest.js"></script>
         <script src="./../src/data/manifest/Resources.js"></script>
-        <script src="./../src/scene/Scenes.js"></script>
-        <script src="./../src/scene/menu/objects/Button.js"></script>
-        <script src="./../src/scene//game/GameOver.js"></script>
-        <script src="./../src/HealthBar.js"></script>
-        <script src="./../src/Background.js"></script>
+        <script src="./../src/util/Int.js"></script>
+        
+
+        <script src="./../src/entity/Powerup.js"></script>
+        <script src="./../src/entity/Popup.js"></script>
+        <script src="./../src/entity/Machine.js"></script>
+        <script src="./../src/geom/Points.js"></script>
+        <script src="./../src/state/AvoidObstacles.js"></script>
+        <script src="./../src/state/Attack.js"></script>
+        <script src="./../src/state/RandomMovement.js"></script>
+        <script src="./../src/ui/button/MachineButton.js"></script>
+        <script src="./../src/ui/Objects.js"></script>
+        <script src="./../src/ui/button/MenuButton.js"></script>
+        <script src="./../src/scene/menu/GameOver.js"></script>
+        <script src="./../src/entity/HealthBar.js"></script>
+        <script src="./../src/ui/Background.js"></script>
         <script src="./../src/scene/game/Game.js"></script>
         <script src="./../src/system/Main.js"></script>
-        <script src="./../src/scope/Alias.js"></script>
-        <script src="./../src/utils/Vector.js"></script>
-        <script src="./../src/entities/Object/Bullets.js"></script>
-        <script src="./../src/entities/Object/Bullet.js"></script>
-        <script src="./../src/entities/Entity.js"></script>
-        <script src="./../src/entities/zombies/Zombie.js"></script>
-        <script src="./../src/entities/players/Player.js"></script>
-        <script src="./../src/entities/players/Players.js"></script>
-        <script src="./../src/entities/zombies/Zombies.js"></script>
-        <script src="./../src/entities/Entities.js"></script>
-        <script src="./../src/entities/Object/Obstacle.js"></script>
+        <script src="./../src/entity/bullet/Bullets.js"></script>
+        <script src="./../src/entity/bullet/Bullet.js"></script>
+        <script src="./../src/entity/Entity.js"></script>
+        <script src="./../src/entity/zombie/Zombie.js"></script>
+        <script src="./../src/entity/player/PlayerInputs.js"></script>
+        <script src="./../src/entity/player/Player.js"></script>
+        <script src="./../src/entity/player/Players.js"></script>
+        <script src="./../src/entity/player/BoyPlayer.js"></script>
+        <script src="./../src/entity/player/GirlPlayer.js"></script>
+        <script src="./../src/entity/zombie/Zombies.js"></script>
+        <script src="./../src/entity/Entities.js"></script>
+        <script src="./../src/entity/obstacle/Obstacle.js"></script>
+        <script src="./../src/entity/obstacle/Obstacles.js"></script>
         <script src="./../src/scene/menu/HowtoPlay.js"></script>
         <script src="./../src/scene/menu/Menu.js"></script>
         <script src="./../src/scene/game/Game.js"></script>
+        
+
+        <script src="./../src/scope/Alias.js"></script>
+
 
         <!-- BOOTSTRAP -->
         <script>
             window.onload = function() {
-                var app = new cop.system.Main();
+                var app = new theLivingLab.system.Main();
                 app.start();
             }
         </script>

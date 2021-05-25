@@ -10,7 +10,7 @@
  * 
  * Game state.
  */
-cop.scene.Game = function(opt={nrOfPlayers: 1}) {
+theLivingLab.scene.Game = function(opt) {
 
     //used to check if the game should be initiated as 1 player or co op
     this.nrOfPlayers = opt.nrOfPlayers;
@@ -19,10 +19,9 @@ cop.scene.Game = function(opt={nrOfPlayers: 1}) {
 
     this._zombies = null;
 
-    this.obstacle = null;
+    this._obstacles = null;
 
-    //current game score
-    this._score = null;
+    this._avatar = null;
 
     //graphic representation of the score
     this._scoreView = null;
@@ -31,96 +30,129 @@ cop.scene.Game = function(opt={nrOfPlayers: 1}) {
     this._background = null;
 
     this.backgroundMusic = null;
+   
+    this.zombieInterval = null;
 
     rune.scene.Scene.call(this);
 
-    this.zombieInterval = null;
 
 };
 
-cop.scene.Game.prototype = Object.create(rune.scene.Scene.prototype);
-cop.scene.Game.prototype.constructor = cop.scene.Game;
+theLivingLab.scene.Game.prototype = Object.create(rune.scene.Scene.prototype);
+theLivingLab.scene.Game.prototype.constructor = theLivingLab.scene.Game;
+
+
 
 /**
  * @inheritDoc
  */
-cop.scene.Game.prototype.init = function() {
+theLivingLab.scene.Game.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
-    this.mouse.enable = false;
-    this.cameras.getCamera(0).debug = false;
+    this.cameras.getCamera(0).debug = true;
     this._initCamera();
     this._initBackground();
-    this._initSounds();
-    this._initEntities();
-    this._initObstacles();
-  //  this._initZombieInterval();
-
+    this._initHUD();
+    //this._initSounds();
+   this._initEntities();
+   this._initObstacles();
+   this._updateScoreView();
+   this._initObjects();
+    //this._initTimers();
 };
 
-cop.scene.Game.prototype._initZombieInterval = function() {
+theLivingLab.scene.Game.prototype._initHUD = function() {
 
-    this.zombieInterval = setInterval(this._zombies.add,2000)
+    this._avatar = new rune.display.Sprite(20,20,200,200,'', 'avatar');
+    this._scoreView = new rune.text.BitmapField('0', 'texttexture');
+    this._scoreView.y = this.application.screen.top + 30;
+    this._scoreView.x = this.application.screen.left + 80;
+    
+    this._scoreView.autoSize = true;
+
+    this.stage.addChild(this._avatar);
+    this.stage.addChild(this._scoreView);
 }
 
-cop.scene.Game.prototype._initEntities = function() {
+theLivingLab.scene.Game.prototype._initEntities = function() {
     
-    this._bullets = new Bullets(this);
-    this.groups.add(this._bullets);   
-   
-    this._players = new Players(this, this._bullets);
-    this._zombies = new Zombies(this);
+    this._players = new theLivingLab.entity.Players();
+    this._zombies = new theLivingLab.entity.Zombies();
    
     this.groups.add(this._players);   
     this.groups.add(this._zombies);   
-    
 };
 
-cop.scene.Game.prototype._initBackground = function() {
+theLivingLab.scene.Game.prototype._initBackground = function() {
    
-    this._background = new Background();
-
+    this._background = new theLivingLab.ui.Background();
     this.stage.addChild(this._background);
 };
 
-cop.scene.Game.prototype._initSounds = function() {
-   
-    this.application.sounds.music.volume = 1;
-    this.application.sounds.master.volume = 0;
+theLivingLab.scene.Game.prototype._initObjects = function() {
+
+    this._objects = new theLivingLab.ui.Objects();
+    this.groups.add(this._objects);
+};
+
+theLivingLab.scene.Game.prototype._initSounds = function() {
+    
     this.backgroundMusic = this.application.sounds.music.get("game-sound");
-    this.backgroundMusic.play();
+    this.application.sounds.music.volume = 0.3;
+    this.backgroundMusic.play(true);
 
 };
-cop.scene.Game.prototype._initCamera = function() {
+theLivingLab.scene.Game.prototype._initCamera = function() {
    
     this.cameras.getCamera(0).fade.opacity = 1.0;
     this.cameras.getCamera(0).fade.in(100);
 };
 
-cop.scene.Game.prototype._initObstacles = function(step) {
-    
-    this.table1 = new Obstacle(1050,350,98,80, 'nyttbord');
-    this.table2 = new Obstacle(750,500,98,80, 'nyttbord');
-    this.table3 = new Obstacle(500,300,156,156, 'nyttbord2');
-    this.table4 = new Obstacle(50,550,213,62, 'nyttbord3');
-   
-    this.stage.addChild(this.table1);
-    this.stage.addChild(this.table2);
-    this.stage.addChild(this.table3);
-    this.stage.addChild(this.table4);
+theLivingLab.scene.Game.prototype._initObstacles = function(step) {
+
+    this._obstacles = new theLivingLab.entity.Obstacles();
+    this.groups.add(this._obstacles);
 };
 
-cop.scene.Game.prototype.update = function(step) {
+
+theLivingLab.scene.Game.prototype.update = function(step) {
     
     rune.scene.Scene.prototype.update.call(this, step);
+    this._updateScoreView();
 };
 
-cop.scene.Game.prototype.dispose = function() {
+
+theLivingLab.scene.Game.prototype._updateScoreView = function(step) {
+
+    this._scoreView.text = this._players.score.toString();
+};
+
+
+theLivingLab.scene.Game.prototype.isInBounderies = function(point) {
+
+    var camera = this.cameras.getCamera(0);
+
+    if (point.x < camera.width && point.x > 0 && point.y < camera.height && point.y > 45){
+        return true;
+    }
+    return false;
+
+};
+
+
+
+theLivingLab.scene.Game.prototype.dispose = function() {
    
+    //this._zombies = null;
+    //this._players = null;
     rune.scene.Scene.prototype.dispose.call(this);
 };
 
-cop.scene.Game.prototype.onGameOver = function() {
-   
-    this.application.scenes.load([new cop.scene.GameOver()])
+theLivingLab.scene.Game.prototype.onGameOver = function() {
+    
+   // this.backgroundMusic.stop();
+    this.application.scenes.load([new theLivingLab.scene.GameOver(this._players.score)])
+    this._players.dispose();
+    this._zombies.dispose();
+    //this.dispose();
 };

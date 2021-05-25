@@ -9,7 +9,7 @@
  * 
  * HowtoPlay state.
  */
- cop.scene.HowtoPlay = function() {
+ theLivingLab.scene.HowtoPlay = function() {
 
 
     this.background = null;
@@ -18,36 +18,46 @@
     rune.scene.Scene.call(this);
 };
 
-cop.scene.HowtoPlay.prototype = Object.create(rune.scene.Scene.prototype);
-cop.scene.HowtoPlay.prototype.constructor = cop.scene.HowtoPlay;
+theLivingLab.scene.HowtoPlay.prototype = Object.create(rune.scene.Scene.prototype);
+theLivingLab.scene.HowtoPlay.prototype.constructor = theLivingLab.scene.HowtoPlay;
 
 /**
  * @inheritDoc
  */
-cop.scene.HowtoPlay.prototype.init = function() {
+theLivingLab.scene.HowtoPlay.prototype.init = function() {
     rune.scene.Scene.prototype.init.call(this);
-    this.mouse.enable = true;
     this._initBackground();
     this._initButtons();
 
 };
 
-cop.scene.HowtoPlay.prototype._initBackground = function() {
+theLivingLab.scene.HowtoPlay.prototype._initBackground = function() {
     
-    this.background = new Background('howtoplay');
+    this.background = new theLivingLab.ui.Background('howtoplay');
     this.stage.addChild(this.background);
 };
 
-cop.scene.HowtoPlay.prototype._initButtons = function() {
+theLivingLab.scene.HowtoPlay.prototype._initButtons = function() {
     
-    this.backButton = new Button('pil', 50, 25, 210, 90, this.application.gotoMenu)
+    this.backButton = new theLivingLab.ui.MenuButton('pil', 50, 25, 210, 90, this.application.gotoMenu)
     this.stage.addChild(this.backButton);
 };
 
-cop.scene.HowtoPlay.prototype.update = function(step) {
+theLivingLab.scene.HowtoPlay.prototype.update = function(step) {
     rune.scene.Scene.prototype.update.call(this, step);
+    this._updateInputs();
 };
 
-cop.scene.HowtoPlay.prototype.dispose = function() {
+theLivingLab.scene.HowtoPlay.prototype._updateInputs = function(step) {
+    
+    if(this.keyboard.justPressed('a')){
+
+        this.application.scenes
+        this.application.scenes.load([new theLivingLab.scene.Menu()])
+    } 
+};
+
+
+theLivingLab.scene.HowtoPlay.prototype.dispose = function() {
     rune.scene.Scene.prototype.dispose.call(this);
 };

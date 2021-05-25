@@ -1,5 +1,5 @@
 {
-  "name": "cop",
+  "name": "theLivingLab",
   "version": "0.0.0",
   "description": "",
   "main": "bin/bootstrap.js",
@@ -13,8 +13,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "electron": "*",
-    "google-closure-compiler": "*",
-    "jsdoc": "*"
+    "electron": "^12.0.9",
+    "google-closure-compiler": "^20210505.0.0",
+    "jsdoc": "^3.6.7"
   }
 }

@@ -8,18 +8,17 @@
  * 
  * ...
  */
-cop.system.Main = function() {
+theLivingLab.system.Main = function() {
 
 
     rune.system.Main.call(this, {
 
         id:             "com.vectorpanic.template",
-        name:           "cop",
-        scene:          cop.scene.Menu,
-        resources:      cop.data.Resources,
+        name:           "theLivingLab",
+        scene:          theLivingLab.scene.Menu,
+        resources:      theLivingLab.data.Resources,
         useKeyboard:    true,
-        useMouse:       true,
-        debug:          false,
+        debug:          true,
         screenResolutionX: 1280,
         screenResolutionY: 720,
         frameRate: 30
@@ -28,23 +27,26 @@ cop.system.Main = function() {
     });
 };
 
-cop.system.Main.prototype = Object.create(rune.system.Main.prototype);
-cop.system.Main.prototype.constructor = cop.system.Main;
 
-cop.system.Main.prototype.gotoMenu = function() {
+theLivingLab.system.Main.prototype = Object.create(rune.system.Main.prototype);
+theLivingLab.system.Main.prototype.constructor = theLivingLab.system.Main;
 
-    this.application.scenes.load([new cop.scene.Menu()])
+theLivingLab.system.Main.prototype.gotoMenu = function() {
+
+    this.application.scenes.load([new theLivingLab.scene.Menu()])
 }
-cop.system.Main.prototype.gotoHowtoPlay = function() {
+theLivingLab.system.Main.prototype.gotoHowtoPlay = function() {
 
-    this.application.scenes.load([new cop.scene.HowtoPlay()])
+    this.application.scenes.load([new theLivingLab.scene.HowtoPlay()])
 }
-cop.system.Main.prototype.startSinglePlayer = function() {
+theLivingLab.system.Main.prototype.startSinglePlayer = function() {
 
-    this.application.scenes.load([new cop.scene.Game({nrOfPlayers: 1})])
+    this.application.sounds.music.get('menu').stop();
+
+    this.application.scenes.load([new theLivingLab.scene.Game({nrOfPlayers: 1})])
 }
-cop.system.Main.prototype.startMultiPlayer = function() {
+theLivingLab.system.Main.prototype.startMultiPlayer = function() {
 
-    this.application.scenes.load([new cop.scene.Game({nrOfPlayers: 2})])
+    this.application.scenes.load([new theLivingLab.scene.Game({nrOfPlayers: 2})])
 }
 

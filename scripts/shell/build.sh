@@ -8,7 +8,35 @@ npx google-closure-compiler \
 --isolation_mode IIFE \
 --js "./../../lib/rune.js" \
 --js "./../../src/scope/Manifest.js" \
---js "./../../src/scene/game/Game.js" \
+--js "./../../src/data/manifest/Resources.js" \
+--js "./../../src/util/Int.js" \
+--js "./../../src/entity/Machine.js" \
+--js "./../../src/geom/Points.js" \
+--js "./../../src/state/AvoidObstacles.js" \
+--js "./../../src/state/Attack.js" \
+--js "./../../src/state/RandomMovement.js" \
+--js "./../../src/ui/button/MachineButton.js" \
+--js "./../../src/ui/Objects.js" \
+--js "./../../src/ui/button/MenuButton.js" \
+--js "./../../src/scene/menu/GameOver.js" \
+--js "./../../src/entity/HealthBar.js" \
+--js "./../../src/ui/Background.js" \
 --js "./../../src/system/Main.js" \
+--js "./../../src/entity/bullet/Bullets.js" \
+--js "./../../src/entity/bullet/Bullet.js" \
+--js "./../../src/entity/Entity.js" \
+--js "./../../src/entity/zombie/Zombie.js" \
+--js "./../../src/entity/player/PlayerInputs.js" \
+--js "./../../src/entity/player/Player.js" \
+--js "./../../src/entity/player/Players.js" \
+--js "./../../src/entity/player/BoyPlayer.js" \
+--js "./../../src/entity/player/GirlPlayer.js" \
+--js "./../../src/entity/zombie/Zombies.js" \
+--js "./../../src/entity/Entities.js" \
+--js "./../../src/entity/obstacle/Obstacle.js" \
+--js "./../../src/entity/obstacle/Obstacles.js" \
+--js "./../../src/scene/menu/HowtoPlay.js" \
+--js "./../../src/scene/menu/Menu.js" \
+--js "./../../src/scene/game/Game.js" \
 --js "./../../src/scope/Alias.js" \
---js_output_file "./../../dist/cop.js";
+--js_output_file "./../../dist/theLivingLab.js";

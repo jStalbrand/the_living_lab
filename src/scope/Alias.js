@@ -6,7 +6,7 @@
  * Exports the application to the global scope.
  */
 if (typeof window !== "undefined") {
-    if (typeof window.cop === "undefined") {
-        window.cop = cop;
+    if (typeof window.theLivingLab === "undefined") {
+        window.theLivingLab = theLivingLab;
     }
 }
