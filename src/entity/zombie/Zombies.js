@@ -12,8 +12,8 @@ theLivingLab.entity.Zombies.prototype.constructor = theLivingLab.entity.Zombies;
 theLivingLab.entity.Zombies.prototype.init = function() {
 
     rune.display.DisplayGroup.prototype.init.call(this);
-    //this._initInterval();
-    //this._add();
+    this._initInterval();
+    this._add();
 }
 
 theLivingLab.entity.Zombies.prototype._initInterval = function() {
