@@ -54,6 +54,17 @@ Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "left", {
     }
 });
 
+Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "Q", {
+    /**
+     * @this theLivingLab.entity.PlayerInputs
+     * @ignore
+     */
+    get : function() {
+        return 'q';
+    }
+});
+
+
 
 Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "shoot", {
     /**
@@ -61,7 +72,7 @@ Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "shoot", {
      * @ignore
      */
     get : function() {
-        return this._keys['space'] || 'e';
+        return 'space' || 'e';
     }
 });
 

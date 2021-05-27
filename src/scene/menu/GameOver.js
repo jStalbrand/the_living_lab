@@ -50,7 +50,7 @@ theLivingLab.scene.GameOver.prototype.init = function() {
     this.initBackground();
     this.initButtons();
     this._initScoreView();
-    this._initSound();
+    //this._initSound();
 };
 theLivingLab.scene.GameOver.prototype._initScoreView = function() {
 

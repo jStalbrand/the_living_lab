@@ -15,8 +15,11 @@ theLivingLab.state.RandomMovement = function() {
 
 }
 
+
 theLivingLab.state.RandomMovement.prototype = Object.create(rune.state.State.prototype);
 theLivingLab.state.RandomMovement.prototype.constructor = theLivingLab.state.RandomMovement;
+
+
 
 theLivingLab.state.RandomMovement.prototype.init = function() {
 
@@ -24,32 +27,29 @@ theLivingLab.state.RandomMovement.prototype.init = function() {
     this.checkPoint = this._getCheckpoint();
 }
 
+
+
 theLivingLab.state.RandomMovement.prototype.onEnter = function() {
 
     rune.state.State.prototype.onEnter.call(this);
-    this.owner.speed = 2;
-    console.log('enter random movement')
-
+    console.log('enter random')
     this.checkPoint = this._getCheckpoint();
 }
+
+
 
 theLivingLab.state.RandomMovement.prototype.update = function(step) {
 
     rune.state.State.prototype.update.call(this, step);
-    //console.log('in random')
     this._updatePosition();
-
 }
+
+
 
 theLivingLab.state.RandomMovement.prototype._updatePosition = function() {
 
-    //console.log('owner: ', this.owner.center)
-    //console.log('checkpoint: ', this.checkPoint)
-    
     if(this._isFinished() === true){
-        //console.log('is finiehd')
         this.checkPoint = this._getCheckpoint();
-       // console.log('new checkpoint: ', this.checkPoint)
     }
     else{
 
@@ -61,6 +61,8 @@ theLivingLab.state.RandomMovement.prototype._updatePosition = function() {
     }
 
 }
+
+
 
 theLivingLab.state.RandomMovement.prototype._getCheckpoint = function() {
 
@@ -76,29 +78,29 @@ theLivingLab.state.RandomMovement.prototype._getCheckpoint = function() {
         }
         
     }
+    console.log('point x: ', point.x);
+    console.log('point y: ', point.y);
+    
     return point;
     
 }
 
 
+
 theLivingLab.state.RandomMovement.prototype._isFinished = function() {
     
     var differenceX = Math.abs(this.owner.x - this.checkPoint.x);
-   // console.log('diff x: ', differenceX)
-
     var differenceY = Math.abs(this.owner.y - this.checkPoint.y);
-  //  console.log('diff y: ', differenceY)
     
     if(differenceX < 50 && differenceY < 50){
-       // console.log('is finished')
         return true;
     }
    return false;
 }
 
 
+
 theLivingLab.state.RandomMovement.prototype.dispose = function() {
 
-    console.log('dispose in RandomMovement');
     rune.state.State.prototype.dispose.call(this);
 }

@@ -1,13 +1,29 @@
 
+
 theLivingLab.entity.Zombies = function() {
 
+
     this._interval = null;
+
+
     this.startX = [-50, -60, 1300, 1350, 200, 500, 800];
+
+
     this.zombieTextures = ['z1sprite', 'z2sprite'];
+
+
+    this.MAX_NUMBER = 5;
+
     rune.display.DisplayGroup.call(this, this.application.scenes.selected.stage);
+
+
 }
+
+
 theLivingLab.entity.Zombies.prototype = Object.create(rune.display.DisplayGroup.prototype);
 theLivingLab.entity.Zombies.prototype.constructor = theLivingLab.entity.Zombies;
+
+
 
 theLivingLab.entity.Zombies.prototype.init = function() {
 
@@ -16,11 +32,14 @@ theLivingLab.entity.Zombies.prototype.init = function() {
     this._add();
 }
 
+
+
 theLivingLab.entity.Zombies.prototype._initInterval = function() {
 
     var self = this;
     this._interval = setInterval(function(){ self._add() }, 2500)
 }
+
 
 
 theLivingLab.entity.Zombies.prototype._add = function() {
@@ -35,15 +54,19 @@ theLivingLab.entity.Zombies.prototype._add = function() {
     else{
         y = 800;
     }
-    if(this.numChildren < 7){
+    if(this.numChildren < this.MAX_NUMBER){
         var zombie1 = new theLivingLab.entity.Zombie(this.startX[0], y, this.application.scenes.selected._players.m_children[0], this.zombieTextures[0]);
         this.addChild(zombie1);
     }
 }
 
+
+
 theLivingLab.entity.Zombies.prototype.update = function() {
 
 }
+
+
 theLivingLab.entity.Zombies.prototype.shuffle = function(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -63,10 +86,11 @@ theLivingLab.entity.Zombies.prototype.shuffle = function(array) {
     return array;
   }
 
+
+
   theLivingLab.entity.Zombies.prototype.dispose = function() {
 
     this_interval = null;
-    
     rune.display.DisplayGroup.prototype.dispose.call(this);
 }
 

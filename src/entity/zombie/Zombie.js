@@ -10,14 +10,24 @@
 
 theLivingLab.entity.Zombie = function(xPos, yPos, target, texture) {
 
-    theLivingLab.entity.Entity.call(this, xPos, yPos, 50, 100, texture);
+
     this.target = target || null;
-    this.targetAngle = null;
-    this.attackDistance = 250;
-    this.hurtSound = null;
-    this.directionInterval = null;
-    this.walkSound = null;
-    this._init();
+    
+    
+    this.hurtSound = this.application.sounds.sound.get('zombie');
+
+    
+    this.hurtSound.volume = 0.1;
+    
+    
+    this.ATTACK_DISTANCE = 250;
+    
+
+    this.DEAD_ANIM = 'dead';
+    
+
+    theLivingLab.entity.Entity.call(this, xPos, yPos, 50, 100, texture);
+
 
 }
 
@@ -26,13 +36,21 @@ theLivingLab.entity.Zombie.prototype = Object.create(theLivingLab.entity.Entity.
 theLivingLab.entity.Zombie.prototype.constructor = theLivingLab.entity.Zombie;
 
 
-theLivingLab.entity.Zombie.prototype._init = function() {
+theLivingLab.entity.Zombie.prototype.init = function() {
 
-    this._initAnimations();
-    this._initHitbox();
+    theLivingLab.entity.Entity.prototype.init.call(this);
     this._initStates();
-    this._initSounds();
 }
+
+
+theLivingLab.entity.Zombie.prototype._initAnimations = function() {
+    
+    theLivingLab.entity.Entity.prototype._initAnimations.call(this);
+    this.animations.add(this.WALK_DOWN_ANIM, [0,1,2,3], 10, true);
+    this.animations.add(this.WALK_DOWN_HURT_ANIM, [4,5,6,7], 10, true);
+    this.animations.add(this.DEAD_ANIM, [8,9,10], 3);
+} 
+
 
 
 theLivingLab.entity.Zombie.prototype._initStates = function() {
@@ -41,51 +59,58 @@ theLivingLab.entity.Zombie.prototype._initStates = function() {
 }
 
 
-theLivingLab.entity.Zombie.prototype._initSounds = function() {
-
-    this.hurtSound = this.application.sounds.music.get('zombie');
-    this.hurtSound.volume = 0.5
-}
-
 
 theLivingLab.entity.Zombie.prototype.update = function(step) {
 
     theLivingLab.entity.Entity.prototype.update.call(this, step);
-    this._checkHealth();
     this._updateStates();
 }
 
 
 theLivingLab.entity.Zombie.prototype._updateAnimations = function() {
 
-    this.isHurt ? this.animations.gotoAndPlay('walkdownhurt', 0) : this.animations.gotoAndPlay('walkdown', 0)
+
+    if(this.health === 0){
+        this.animations.gotoAndPlay(this.DEAD_ANIM, 0)
+    }
+    else if(this.health !== 0 && this.isHurt){
+        this.animations.gotoAndPlay(this.WALK_DOWN_HURT_ANIM, 0, true)   
+    }
+    else{
+        this.animations.gotoAndPlay(this.WALK_DOWN_ANIM, 0, true)
+    }
 }
+
 
 
 theLivingLab.entity.Zombie.prototype._updateStates = function() {
 
     var targetDistance = theLivingLab.geom.Points.prototype.getDistance(new rune.geom.Point(this.x, this.y), this.target)
-    if(this.states.selected.name === 'RandomMovement' && targetDistance < this.attackDistance){
-        this.states.select('Attack')
-    }
-     
-    if(this.states.selected.name === 'Attack' && targetDistance > this.attackDistance){
-        this.states.select('RandomMovement')
+    if(this.states !== null){
+
+        if(this.states.selected.name === 'RandomMovement' && targetDistance < this.attackDistance){
+            this.states.select('Attack')
+        }
+         
+        if(this.states.selected.name === 'Attack' && targetDistance > this.attackDistance){
+            this.states.select('RandomMovement')
+        }
+
     }
 }
 
-
-theLivingLab.entity.Zombie.prototype.makeHurtSound = function() {
-
-    this.hurtSound.play();
-}
 
 
 theLivingLab.entity.Zombie.prototype._checkHealth = function() {
 
     theLivingLab.entity.Entity.prototype._checkHealth.call(this);
-    this.health === 0 && this.parent.removeChild(this);
+    if(this._health === 0 && this.animations.m_frameIndex === 2){
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+        this.dispose();
+    }
 }
+
 
 
 theLivingLab.entity.Zombie.prototype.dispose = function() {

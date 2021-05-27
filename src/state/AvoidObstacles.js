@@ -9,18 +9,25 @@ theLivingLab.state.AvoidObstacles = function() {
 
     rune.state.State.call(this, 'AvoidObstacles');
 
+
     this._targets = [];
+
 
 }
 
+
+
 theLivingLab.state.AvoidObstacles.prototype = Object.create(rune.state.State.prototype);
 theLivingLab.state.AvoidObstacles.prototype.constructor = theLivingLab.state.AvoidObstacles;
+
+
 
 theLivingLab.state.AvoidObstacles.prototype.init = function() {
 
     rune.state.State.prototype.init.call(this);
     this._initTargets();
 }
+
 
 
 theLivingLab.state.AvoidObstacles.prototype._initTargets = function() {
@@ -37,12 +44,13 @@ theLivingLab.state.AvoidObstacles.prototype._initTargets = function() {
 }
 
 
+
 theLivingLab.state.AvoidObstacles.prototype.onEnter = function() {
 
     rune.state.State.prototype.onEnter.call(this);
-    console.log('enter avoid')
-    this.owner.speed = 2;
+    console.log('enter avoid');
 }
+
 
 
 theLivingLab.state.AvoidObstacles.prototype.update = function(step) {
@@ -50,6 +58,8 @@ theLivingLab.state.AvoidObstacles.prototype.update = function(step) {
     rune.state.State.prototype.update.call(this, step);
     this._updatePosition();
 }
+
+
 
 theLivingLab.state.AvoidObstacles.prototype._updatePosition = function() {
 
@@ -68,6 +78,8 @@ theLivingLab.state.AvoidObstacles.prototype._updatePosition = function() {
 
 }
 
+
+
 theLivingLab.state.AvoidObstacles.prototype._isFinnished = function() {
     
     var closestTarget = theLivingLab.geom.Points.prototype.getClosestNeighbour(new rune.geom.Point(this.owner.x, this.owner.y), this._targets);
@@ -80,8 +92,8 @@ theLivingLab.state.AvoidObstacles.prototype._isFinnished = function() {
 }
 
 
+
 theLivingLab.state.AvoidObstacles.prototype.dispose = function() {
 
-    console.log('dispose in AvoidObstacles');
     rune.state.State.prototype.dispose.call(this);
 }

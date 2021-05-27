@@ -48,7 +48,7 @@ theLivingLab.data.Resources.prototype.m_construct = function() {
 
    
 
-    
+    //Images
     this.create("z1sprite", "/Users/jake/Desktop/theLivingLab/asset/z1sprite.png")
     this.create("skott", "/Users/jake/Desktop/theLivingLab/asset/skott.png")
     this.create("sprite1", "/Users/jake/Desktop/theLivingLab/asset/sprite1.png")
@@ -75,12 +75,18 @@ theLivingLab.data.Resources.prototype.m_construct = function() {
     this.create("avatar", "/Users/jake/Desktop/theLivingLab/asset/avatar.png")
     this.create("pressq", "/Users/jake/Desktop/theLivingLab/asset/pressq.png")
     this.create("soda", "/Users/jake/Desktop/theLivingLab/asset/soda.png")
+    this.create("50points", "/Users/jake/Desktop/theLivingLab/asset/50points.png")
+    this.create("skottupp", "/Users/jake/Desktop/theLivingLab/asset/skottupp.png")
     
     
+    //Sounds
     this.create("shoot-sound", "/Users/jake/Desktop/theLivingLab/asset/sounds/shoot.mp3")
-   // this.create("game-sound", "/Users/jake/Desktop/theLivingLab/asset/sounds/game.wav")
+    this.create("game-sound", "/Users/jake/Desktop/theLivingLab/asset/sounds/game.wav")
     this.create("zombie", "/Users/jake/Desktop/theLivingLab/asset/sounds/zombie.wav")
     this.create("menu", "/Users/jake/Desktop/theLivingLab/asset/sounds/menu.mp3")
     this.create("machinesound", "/Users/jake/Desktop/theLivingLab/asset/sounds/machinesound.mp3")
+    this.create("gameoversound", "/Users/jake/Desktop/theLivingLab/asset/sounds/gameover.wav")
+    this.create("playerdamage", "/Users/jake/Desktop/theLivingLab/asset/sounds/playerdamage.mp3")
+    this.create("points", "/Users/jake/Desktop/theLivingLab/asset/sounds/points.wav")
     
 }

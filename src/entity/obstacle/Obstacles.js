@@ -5,26 +5,36 @@ theLivingLab.entity.Obstacles = function(owner) {
 
 
     this._owner = owner || null;
+
+
     rune.display.DisplayGroup.call(this, this.application.scenes.selected.stage);
+
+    
 }
+
 
 theLivingLab.entity.Obstacles.prototype = Object.create(rune.display.DisplayGroup.prototype);
 theLivingLab.entity.Obstacles.prototype.constructor = theLivingLab.entity.Obstacles;
+
+
 
 theLivingLab.entity.Obstacles.prototype.init = function() {
 
     rune.display.DisplayGroup.prototype.init.call(this);
     this.addChild(new theLivingLab.entity.Obstacle(1050,350,98,80, 'nyttbord'));
-    //this.addChild(new theLivingLab.entity.Obstacle(750,500,98,80, 'nyttbord'));
     this.addChild(new theLivingLab.entity.Obstacle(500,300,214,62, 'nyttbord22'));
     this.addChild(new theLivingLab.entity.Obstacle(50,550,213,62, 'nyttbord3'));
 }
+
+
 
 theLivingLab.entity.Obstacles.prototype.update = function(step) {
 
     rune.display.DisplayGroup.prototype.update.call(this,step);
     this.updateCollision();
 }
+
+
 
 theLivingLab.entity.Obstacles.prototype.updateCollision = function() {
 
@@ -40,15 +50,23 @@ theLivingLab.entity.Obstacles.prototype.updateCollision = function() {
     );
     
 }
+
+
+
 theLivingLab.entity.Obstacles.prototype._onPlayerCollision = function(player, obstacle) {
     
     player.x = player.previousX;
     player.y = player.previousY;
 }
+
+
+
 theLivingLab.entity.Obstacles.prototype._onZombieCollision = function(zombie, obstacle) {
     
     zombie.states.select('AvoidObstacles');
 }
+
+
 
 theLivingLab.entity.Obstacles.prototype.dispose = function(bullet) {
    

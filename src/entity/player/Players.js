@@ -67,6 +67,7 @@ theLivingLab.entity.Players.prototype._updateScore = function() {
 
 theLivingLab.entity.Players.prototype.onCollision = function(zombie, player) {
 
+    player.damageSound.play();
     player.health -= 2.5;
     player.healthBar.health -= 2.5;
     

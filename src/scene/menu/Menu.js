@@ -68,11 +68,11 @@ theLivingLab.scene.Menu.prototype._initButtons = function(step) {
     this.singleplayerButton = new theLivingLab.ui.MenuButton('single-player', 700, 250, 394, 76, self.startSinglePlayer)
     this.multiplayerButton = new theLivingLab.ui.MenuButton('multi-player', 700, 350, 394, 76, self.application.startMultiPlayer)
     this.howtoplayButton = new theLivingLab.ui.MenuButton('howtoplaymenu', 700, 450, 394, 76, self.application.gotoHowtoPlay)
-    this.highscoreButton = new theLivingLab.ui.MenuButton('high-score', 700, 550, 394, 76)
+    //this.highscoreButton = new theLivingLab.ui.MenuButton('high-score', 700, 550, 394, 76)
     this.stage.addChild(this.singleplayerButton);
     this.stage.addChild(this.multiplayerButton);
     this.stage.addChild(this.howtoplayButton);
-    this.stage.addChild(this.highscoreButton);
+   // this.stage.addChild(this.highscoreButton);
 }
 
 /**

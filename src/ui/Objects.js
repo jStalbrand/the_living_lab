@@ -1,21 +1,26 @@
 
 
 
-theLivingLab.ui.Objects = function(owner) {
+theLivingLab.ui.Objects = function() {
+
 
     this._machine = null;
 
+
+
     this._machineButton = null;
 
-    this._owner = owner || null;
+
 
     rune.display.DisplayGroup.call(this, this.application.scenes.selected.stage);
 
 
 }
 
+
 theLivingLab.ui.Objects.prototype = Object.create(rune.display.DisplayGroup.prototype);
 theLivingLab.ui.Objects.prototype.constructor = theLivingLab.ui.Objects;
+
 
 theLivingLab.ui.Objects.prototype.init = function() {
 
@@ -34,7 +39,7 @@ theLivingLab.ui.Objects.prototype.update = function(step) {
 }
 
 
-theLivingLab.ui.Objects.prototype.dispose = function(bullet) {
+theLivingLab.ui.Objects.prototype.dispose = function() {
    
     rune.display.DisplayGroup.prototype.dispose.call(this);
 };
