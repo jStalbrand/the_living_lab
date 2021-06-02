@@ -45,7 +45,6 @@ theLivingLab.data.Resources.prototype.constructor = theLivingLab.data.Resources;
  * @inheritDoc
  */
 theLivingLab.data.Resources.prototype.m_construct = function() {
-
    
 
     //Images
@@ -77,7 +76,7 @@ theLivingLab.data.Resources.prototype.m_construct = function() {
     this.create("soda", "/Users/jake/Desktop/theLivingLab/asset/soda.png")
     this.create("50points", "/Users/jake/Desktop/theLivingLab/asset/50points.png")
     this.create("skottupp", "/Users/jake/Desktop/theLivingLab/asset/skottupp.png")
-    
+    this.create("scoreBackground", "/Users/jake/Desktop/theLivingLab/asset/scoreBackground.png")
     
     //Sounds
     this.create("shoot-sound", "/Users/jake/Desktop/theLivingLab/asset/sounds/shoot.mp3")

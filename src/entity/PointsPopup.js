@@ -8,6 +8,7 @@ theLivingLab.entity.PointsPopup = function(x, y) {
 
     var y = y || 0;
     
+
     rune.display.Sprite.call(this, x, y, 86, 38, '', '50points');
  
  
@@ -26,7 +27,6 @@ theLivingLab.entity.PointsPopup = function(x, y) {
         scope: this,
         onComplete: this.dispose
     });
- 
 }
 
 

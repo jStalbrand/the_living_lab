@@ -22,10 +22,10 @@ theLivingLab.ui.Objects.prototype = Object.create(rune.display.DisplayGroup.prot
 theLivingLab.ui.Objects.prototype.constructor = theLivingLab.ui.Objects;
 
 
+
 theLivingLab.ui.Objects.prototype.init = function() {
 
     rune.display.DisplayGroup.prototype.init.call(this);
-
     this._machine = new theLivingLab.entity.Machine();
     this._machineButton = new theLivingLab.ui.MachineButton();
     this.addChild(this._machine);
@@ -33,10 +33,12 @@ theLivingLab.ui.Objects.prototype.init = function() {
 }
 
 
+
 theLivingLab.ui.Objects.prototype.update = function(step) {
 
     rune.display.DisplayGroup.prototype.update.call(this,step);
 }
+
 
 
 theLivingLab.ui.Objects.prototype.dispose = function() {

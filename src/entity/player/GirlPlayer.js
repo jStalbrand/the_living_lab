@@ -4,11 +4,14 @@ theLivingLab.entity.GirlPlayer = function(xPos, yPos) {
 
     
     theLivingLab.entity.Player.call(this, xPos, yPos, 'sprite2');
- 
+
+    
 }
+
 
 theLivingLab.entity.GirlPlayer.prototype = Object.create(theLivingLab.entity.Player.prototype);
 theLivingLab.entity.GirlPlayer.prototype.constructor = theLivingLab.entity.GirlPlayer;
+
 
 
 theLivingLab.entity.GirlPlayer.prototype._initInputs = function() {
@@ -19,9 +22,8 @@ theLivingLab.entity.GirlPlayer.prototype._initInputs = function() {
         right: 'right',
         down:  'down',
         left:  'left',
-        shoot: 'space'
+        shoot: 'm'
     });
-
 }
 
 

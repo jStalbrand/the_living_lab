@@ -2,13 +2,13 @@
 theLivingLab.entity.HealthBar = function(entity) {
 
 
+   
      this.entity = entity || null;
 
 
-     this._prevHealth = null;
-
 
      this._health = 100; 
+
 
 
      rune.display.Sprite.call(this, 0, 0, 35, 6, '', 'health');
@@ -21,6 +21,7 @@ theLivingLab.entity.HealthBar = function(entity) {
  theLivingLab.entity.HealthBar.prototype.constructor = theLivingLab.entity.HealthBar;
 
 
+
  Object.defineProperty(theLivingLab.entity.HealthBar.prototype, "health", {
 
       get : function() {
@@ -30,7 +31,6 @@ theLivingLab.entity.HealthBar = function(entity) {
 
       set : function(health) {
          
-         this._prevHealth = this._health;
          if(this._health !== health){
 
             this._health = health;
@@ -43,7 +43,7 @@ theLivingLab.entity.HealthBar = function(entity) {
 
 
 
- theLivingLab.entity.HealthBar.prototype.init = function() {
+theLivingLab.entity.HealthBar.prototype.init = function() {
     
    rune.display.Sprite.prototype.init.call(this);
    this._initAnimations();
@@ -57,8 +57,7 @@ theLivingLab.entity.HealthBar.prototype._initAnimations = function() {
 }
 
 
-
- theLivingLab.entity.HealthBar.prototype.update = function(step) {
+theLivingLab.entity.HealthBar.prototype.update = function(step) {
     
    rune.display.Sprite.prototype.update.call(this, step);
    this._updatePosition();
@@ -76,8 +75,17 @@ theLivingLab.entity.HealthBar.prototype._initAnimations = function() {
 
 theLivingLab.entity.HealthBar.prototype._updateAnimations = function() {
 
-   if(this._health < this._prevHealth && this.animations !== null){
-      this.animations.gotoNextFrame();
+   if(this._health === 0){
+      this.animations.goto('health', 4);
+   }
+   if(this._health < 80 && this.health > 60){
+      this.animations.goto('health', 1);
+   }
+   if(this._health < 60 && this.health > 40){
+      this.animations.goto('health', 2);
+   }
+   if(this._health < 40 && this.health > 0){
+      this.animations.goto('health', 3);
    }
 }
 

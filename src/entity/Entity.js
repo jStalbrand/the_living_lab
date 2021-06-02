@@ -57,19 +57,19 @@ Object.defineProperty(theLivingLab.entity.Entity.prototype, "health", {
     
         return this._health;
     },
-
+    
     set : function(health) {
         
-        console.log('in set(health): ', health)
+        if(this._health !== 0){
 
-        this._health = health;
-        if(this.healthBar !== null){
-            this.healthBar.health = this._health;
+            this._health = health;
+            if(this.healthBar !== null){
+                this.healthBar.health = this._health;
+            }
         }
     }
 
 });
-
 
 
 
@@ -155,12 +155,14 @@ theLivingLab.entity.Entity.prototype._updateAnimations = function() {
 
 
 theLivingLab.entity.Entity.prototype._checkHealth = function() {
+    
     if(this._health < 100){
         this.isHurt = true;
     }
-    
-    else if(this._health === 0){
-        this.healthBar.dispose();
+    if(this._health === 0){
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+        this.hitbox.dispose();
     }
 }
 
@@ -169,7 +171,6 @@ theLivingLab.entity.Entity.prototype._checkHealth = function() {
 theLivingLab.entity.Entity.prototype.dispose = function() {
    
     this.healthBar.dispose();
-    //this.parent.removeChild(this);
     rune.physics.Body.prototype.dispose.call(this);
 }
 

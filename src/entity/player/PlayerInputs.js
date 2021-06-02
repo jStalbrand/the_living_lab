@@ -1,18 +1,11 @@
 
-/**
- * ...
- *
- * @constructor
- *
- * @class
- * @classdesc
- * 
- * ...
- */
+
+
  theLivingLab.entity.PlayerInputs = function() {
     
   
     this._keys = {};
+
 };
 
 
@@ -54,6 +47,7 @@ Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "left", {
     }
 });
 
+
 Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "Q", {
     /**
      * @this theLivingLab.entity.PlayerInputs
@@ -65,14 +59,13 @@ Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "Q", {
 });
 
 
-
 Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "shoot", {
     /**
      * @this theLivingLab.entity.PlayerInputs
      * @ignore
      */
     get : function() {
-        return 'space' || 'e';
+        return 'space' || 'm';
     }
 });
 

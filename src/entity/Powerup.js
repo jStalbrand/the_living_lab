@@ -1,4 +1,5 @@
 
+
 theLivingLab.entity.Powerup = function() {
 
 
@@ -42,11 +43,13 @@ theLivingLab.entity.Powerup.prototype.init = function() {
 }
 
 
+
 theLivingLab.entity.Powerup.prototype._initAnimations = function() {
 
   this.animations.add('waiting', [2,0, 3], 3, true);
   this.animations.add('taken', [1]);
 }
+
 
 
 theLivingLab.entity.Powerup.prototype._initHitbox = function() {
@@ -60,6 +63,7 @@ theLivingLab.entity.Powerup.prototype._initHitbox = function() {
 }
 
 
+
 theLivingLab.entity.Powerup.prototype._initTimers = function() {
 
   this.application.scenes.selected.timers.create({
@@ -71,13 +75,11 @@ theLivingLab.entity.Powerup.prototype._initTimers = function() {
 
 
 
-theLivingLab.entity.Powerup.prototype._startFlickering = function(step) {
-
+theLivingLab.entity.Powerup.prototype._startFlickering = function() {
+  var self = this;
   this.flicker(1500, 200, function() {
-    this.parent.removeChild(this, true); }, this);
-
-
-
+    this.dispose();
+  }, this);
 }
 
 
@@ -90,7 +92,7 @@ theLivingLab.entity.Powerup.prototype.update = function(step) {
 
 
 
-theLivingLab.entity.Powerup.prototype._updateCollision = function(step) {
+theLivingLab.entity.Powerup.prototype._updateCollision = function() {
 
   this.hitTestGroup(
       this.application.scenes.selected._players,
@@ -104,35 +106,29 @@ theLivingLab.entity.Powerup.prototype._updateCollision = function(step) {
 theLivingLab.entity.Powerup.prototype._onPlayerCollision = function(self, player) {
   
   if(!this._haveCollided){
+    this._haveCollided = true;
+    this.animations.goto('taken');
+    this.hitSound.play();
+    this.scaleX = 1.3; 
+    this.scaleY = 1.3;
+    this.y -= 20; 
+    player.score += 50;
     
-      this._haveCollided = true;
-      this.animations.goto('taken');
-      this.hitSound.play();
-      this.scaleX = 1.3; 
-      this.scaleY = 1.3;
-      this.y -= 20; 
-      
-      player.score += 50;
-      this.application.scenes.selected.stage.addChild(new theLivingLab.entity.PointsPopup(player.centerX, player.y- 40))
-      
-     this._timer = this.application.scenes.selected.timers.create({
-          duration: 300,
-          scope: this,
-          onComplete: function() {
-              this.parent.removeChild(this, true);
-          },
-      })
-      
+    this.application.scenes.selected.stage.addChild(new theLivingLab.entity.PointsPopup(player.centerX, player.y- 40))
+    
+    this._timer = this.application.scenes.selected.timers.create({
+        duration: 300,
+        scope: this,
+        onComplete: this.dispose
+    })
   }
-     
 }
 
 
 
 theLivingLab.entity.Powerup.prototype.dispose = function() {
-    console.log('dispose')
-    //ta bort
-    this._timer = null;
-    rune.display.Sprite.prototype.dispose.call(this);
+
+  this._timer = null
+  this.parent.removeChild(this);
 }
 

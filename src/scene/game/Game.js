@@ -1,15 +1,7 @@
 
-/**
- * Creates a new object.
- *
- * @constructor
- * @extends rune.scene.Scene
- *
- * @class
- * @classdesc
- * 
- * Game state.
- */
+
+
+
 theLivingLab.scene.Game = function(opt) {
 
 
@@ -39,10 +31,10 @@ theLivingLab.scene.Game = function(opt) {
 
 
 
-    this.music = null;
+    this._music = null;
 
     
-    this.gameoverSound = null;
+    this._gameoverSound = null;
    
 
 
@@ -82,7 +74,6 @@ theLivingLab.scene.Game.prototype._initHUD = function() {
     this._scoreView = new rune.text.BitmapField('0', 'texttexture');
     this._scoreView.y = this.application.screen.top + 30;
     this._scoreView.x = this.application.screen.left + 80;
-    
     this._scoreView.autoSize = true;
 
     this.stage.addChild(this._avatar);
@@ -120,10 +111,10 @@ theLivingLab.scene.Game.prototype._initObjects = function() {
 
 theLivingLab.scene.Game.prototype._initSounds = function() {
 
-    this.music = this.application.sounds.music.get("game-sound");
-    this.gameoverSound = this.application.sounds.sound.get("gameoversound");
+    this._music = this.application.sounds.music.get("game-sound");
+    this._gameoverSound = this.application.sounds.sound.get("gameoversound");
     this.application.sounds.music.volume = 0.3;
-    this.music.play(true);
+    this._music.play(true);
 };
 
 
@@ -153,16 +144,18 @@ theLivingLab.scene.Game.prototype.update = function(step) {
 
 theLivingLab.scene.Game.prototype._updateScoreView = function(step) {
 
-    this._scoreView.text = this._players.score.toString();
+    if(this._players !== null){
+
+        this._scoreView.text = this._players.score.toString();
+    }
 };
 
 
-
+//förflyttas
 theLivingLab.scene.Game.prototype.isInBounderies = function(point) {
-
+    
     var camera = this.cameras.getCamera(0);
-
-    if (point.x < camera.width && point.x > 0 && point.y < camera.height -  50 && point.y > 45){
+    if (point.x < camera.width && point.x > 0 && point.y < camera.height - 50 && point.y > 45){
         return true;
     }
     return false;
@@ -170,22 +163,21 @@ theLivingLab.scene.Game.prototype.isInBounderies = function(point) {
 
 
 
-theLivingLab.scene.Game.prototype.dispose = function() {
-   
-    //this._zombies = null;
-    //this._players = null;
-    rune.scene.Scene.prototype.dispose.call(this);
+theLivingLab.scene.Game.prototype.onGameOver = function() {
+    
+    this.application.scenes.load([new theLivingLab.scene.GameOver(this._players.score)])
+    this.application.scenes.selected.timers.remove();
+    this._gameoverSound.play();
+    this._scoreView.dispose();
+    this._players.dispose();
+    this._zombies.dispose();
+    this._obstacles.dispose();
 };
 
 
 
-theLivingLab.scene.Game.prototype.onGameOver = function() {
-    
-   // this.music.stop();
-    this.application.scenes.load([new theLivingLab.scene.GameOver(this._players.score)])
-    this.music.stop();
-    this.gameoverSound.play();
-    this._players.dispose();
-    this._zombies.dispose();
-    //this.dispose();
+theLivingLab.scene.Game.prototype.dispose = function() {
+   
+    this._music.stop();
+    rune.scene.Scene.prototype.dispose.call(this);
 };

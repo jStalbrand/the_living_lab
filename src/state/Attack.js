@@ -26,7 +26,7 @@ theLivingLab.state.Attack.prototype.init = function() {
 theLivingLab.state.Attack.prototype.onEnter = function() {
 
     rune.state.State.prototype.onEnter.call(this);
-    console.log('enter attack');
+    //console.log('enter attack');
 }
 
 

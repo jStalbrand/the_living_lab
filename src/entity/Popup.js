@@ -1,9 +1,11 @@
 
+
 theLivingLab.entity.Popup = function(x, y) {
 
 
 
   rune.display.Graphic.call(this, x, y, 164, 56, '', 'pressq');
+
 
 }
 
@@ -17,6 +19,7 @@ theLivingLab.entity.Popup.prototype.init = function() {
     rune.display.Graphic.prototype.init.call(this);
     this.flicker(Infinity, 500);
 }
+
 
 theLivingLab.entity.Popup.prototype.dispose = function() {
 

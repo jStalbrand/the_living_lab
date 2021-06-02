@@ -35,10 +35,10 @@ theLivingLab.state.AvoidObstacles.prototype._initTargets = function() {
     var self = this;
     this.owner.application.scenes.selected._obstacles.getChildren().forEach( function (obstacle) {
     
-        self._targets.push({x: obstacle.topLeft.x - 70, y: obstacle.topLeft.y - 100 });
-        self._targets.push({x: obstacle.topRight.x + 70, y: obstacle.topLeft.y - 100 });
-        self._targets.push({x: obstacle.bottomRight.x + 70, y: obstacle.bottomRight.y + 100 });
-        self._targets.push({x: obstacle.bottomLeft.x - 70, y: obstacle.bottomLeft.y + 100 });
+        self._targets.push({x: obstacle.topLeft.x - 70, y: obstacle.topLeft.y - 60 });
+        self._targets.push({x: obstacle.topRight.x + 70, y: obstacle.topLeft.y - 60 });
+        self._targets.push({x: obstacle.bottomRight.x + 70, y: obstacle.bottomRight.y + 60 });
+        self._targets.push({x: obstacle.bottomLeft.x - 70, y: obstacle.bottomLeft.y + 60 });
     })
     this._targets.push({x: this.owner.x, y: this.owner.y});
 }
@@ -48,7 +48,7 @@ theLivingLab.state.AvoidObstacles.prototype._initTargets = function() {
 theLivingLab.state.AvoidObstacles.prototype.onEnter = function() {
 
     rune.state.State.prototype.onEnter.call(this);
-    console.log('enter avoid');
+    //console.log('enter avoid');
 }
 
 
@@ -75,7 +75,6 @@ theLivingLab.state.AvoidObstacles.prototype._updatePosition = function() {
         this.owner.x += this.owner.velocity.x;
         this.owner.y += this.owner.velocity.y;
     }
-
 }
 
 

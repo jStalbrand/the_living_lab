@@ -6,18 +6,35 @@ theLivingLab.entity.Bullet = function(owner, xPos, yPos, direction) {
     this._owner = owner || null;
 
 
-    this.direction = direction || 'RIGHT';
-    
+    this._direction = direction || 'RIGHT';
 
-    //change!!
-    if(this.direction === 'UP' || this.direction === 'DOWN'){
-   
-        rune.display.Sprite.call(this, xPos, yPos, 2, 10, '', 'skottupp');
+
+    var width;
+
+
+    var height;
+
+
+    var resource;
+
+
+    this.BULLET_SPEED = 15;
+
+
+    if(this._direction === 'UP' || this._direction === 'DOWN'){
+        width = 2;
+        height = 10;
+        resource = 'skottupp';
     }
     else{
-
-        rune.display.Sprite.call(this, xPos, yPos, 10, 2, '', 'skott');
+        width = 10;
+        height = 2;
+        resource = 'skott';
     }
+
+
+    rune.display.Sprite.call(this, xPos, yPos, width, height, '', resource);
+    
 
 }
  
@@ -34,7 +51,7 @@ theLivingLab.entity.Bullet = function(owner, xPos, yPos, direction) {
  }
  
 
- //FIX
+
  theLivingLab.entity.Bullet.prototype.update = function(step) {
     
     rune.display.Sprite.prototype.update.call(this, step);
@@ -46,18 +63,18 @@ theLivingLab.entity.Bullet = function(owner, xPos, yPos, direction) {
 
 theLivingLab.entity.Bullet.prototype._updatePosition = function() {
 
-    switch (this.direction) {
+    switch (this._direction) {
         case 'RIGHT':
-            this.x += 15;
+            this.x += this.BULLET_SPEED;
             break;
         case 'LEFT':
-            this.x -= 15;
+            this.x -= this.BULLET_SPEED;
             break;
         case 'UP':
-            this.y -= 15;
+            this.y -= this.BULLET_SPEED;
             break;
         case 'DOWN':
-            this.y += 15;
+            this.y += this.BULLET_SPEED;
             break;
         default:
             break;
@@ -79,20 +96,19 @@ theLivingLab.entity.Bullet.prototype._updateCollision = function() {
         this.dispose,
         this
     );
-    
 }
 
 
 theLivingLab.entity.Bullet.prototype._onZombieCollision = function(self, zombie) {
     
-    self.dispose();
+    this.dispose();
     zombie.health -= 50;
     zombie.hurtSound.play();
+    
     if(zombie.health === 0){
         zombie.animations.gotoAndPlay(zombie.DEAD_ANIM)
         this._owner.score += 10;
         zombie.hurtSound.play();
-        zombie.animations.gotoAndPlay(zombie.DEAD_ANIM, 0)
     }
 }
 

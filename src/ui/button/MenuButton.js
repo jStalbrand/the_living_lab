@@ -2,11 +2,8 @@
 theLivingLab.ui.MenuButton = function(texture, xPos, yPos, width, height, onClick) {
 
 
+
     this.onClick = onClick || function(){};
-
-
-
-    this.autoSize = true;
 
     
 
@@ -14,7 +11,6 @@ theLivingLab.ui.MenuButton = function(texture, xPos, yPos, width, height, onClic
 
 
 }
-
 
 
 theLivingLab.ui.MenuButton.prototype = Object.create(rune.display.Sprite.prototype);
