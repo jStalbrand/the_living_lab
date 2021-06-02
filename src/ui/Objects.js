@@ -4,6 +4,7 @@
 theLivingLab.ui.Objects = function() {
 
 
+
     this._machine = null;
 
 
@@ -36,7 +37,7 @@ theLivingLab.ui.Objects.prototype.init = function() {
 
 theLivingLab.ui.Objects.prototype.update = function(step) {
 
-    rune.display.DisplayGroup.prototype.update.call(this,step);
+    rune.display.DisplayGroup.prototype.update.call(this, step);
 }
 
 

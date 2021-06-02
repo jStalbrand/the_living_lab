@@ -73,7 +73,7 @@ theLivingLab.entity.Zombies.prototype._add = function() {
             var zombie1 = new theLivingLab.entity.Zombie(this.startXPositions[0], y, this.application.scenes.selected._players.m_children[0], this.zombieTextures[0]);
             
         } catch (error) {
-            console.log('Error: ', error);
+
         }
         this.addChild(zombie1);
     }

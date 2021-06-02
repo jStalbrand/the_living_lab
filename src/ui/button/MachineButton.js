@@ -30,8 +30,6 @@ Object.defineProperty(theLivingLab.ui.MachineButton.prototype, "on", {
 
 });
 
-
-
   
 
 

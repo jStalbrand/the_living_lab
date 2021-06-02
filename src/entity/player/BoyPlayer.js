@@ -31,7 +31,7 @@ theLivingLab.entity.BoyPlayer.prototype._initInputs = function() {
         right: 'd',
         down:  's',
         left:  'a',
-        shoot: 'e'
+        space: 'space'
     });
 }
 

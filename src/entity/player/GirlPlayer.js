@@ -22,7 +22,7 @@ theLivingLab.entity.GirlPlayer.prototype._initInputs = function() {
         right: 'right',
         down:  'down',
         left:  'left',
-        shoot: 'm'
+        space: 'm'
     });
 }
 

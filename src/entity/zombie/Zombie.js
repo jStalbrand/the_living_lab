@@ -14,7 +14,7 @@ theLivingLab.entity.Zombie = function(xPos, yPos, target, texture) {
     this.hurtSound.volume = 0.1;
     
     
-    this.ATTACK_DISTANCE = 200;
+    this.ATTACK_DISTANCE = 190;
     
 
     this.DEAD_ANIM = 'dead';

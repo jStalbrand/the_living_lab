@@ -82,7 +82,7 @@ theLivingLab.entity.Players.prototype._onZombieCollision = function(zombie, play
 
     player.damageSound.play();
     player.health -= 2.5;
-    if(player.health === 0){
+    if(player.health < 10){
 
         if(zombie.velocity.x > 0){
             zombie.velocity.x -= 2;

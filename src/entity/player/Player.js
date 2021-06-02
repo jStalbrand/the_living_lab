@@ -131,7 +131,7 @@ theLivingLab.entity.Player.prototype._updateInput = function(step) {
         if (this.keyboard.pressed(this._inputs.down)) {
             this.moveDown();
         }
-        if (this.keyboard.justPressed(this._inputs.shoot)) {
+        if (this.keyboard.justPressed(this._inputs.space)) {
             this.shoot();
         }
     }

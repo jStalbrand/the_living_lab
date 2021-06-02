@@ -50,6 +50,7 @@ theLivingLab.scene.Menu.prototype.constructor = theLivingLab.scene.Menu;
 theLivingLab.scene.Menu.prototype.init = function() {
 
     rune.scene.Scene.prototype.init.call(this);
+    new rune.data.Highscores('theLivingLab', 1, 5).clear();
     this._initBackground();
     this._initButtons();
     this._initSounds();

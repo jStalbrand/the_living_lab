@@ -55,7 +55,7 @@ theLivingLab.scene.Game.prototype.constructor = theLivingLab.scene.Game;
 theLivingLab.scene.Game.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
-    this.cameras.getCamera(0).debug = false;
+    this.cameras.getCamera(0).debug = true;
     this._initCamera();
     this._initBackground();
     this._initHUD();
@@ -127,7 +127,7 @@ theLivingLab.scene.Game.prototype._initCamera = function() {
 
 
 
-theLivingLab.scene.Game.prototype._initObstacles = function(step) {
+theLivingLab.scene.Game.prototype._initObstacles = function() {
 
     this._obstacles = new theLivingLab.entity.Obstacles();
     this.groups.add(this._obstacles);
@@ -142,7 +142,7 @@ theLivingLab.scene.Game.prototype.update = function(step) {
 
 
 
-theLivingLab.scene.Game.prototype._updateScoreView = function(step) {
+theLivingLab.scene.Game.prototype._updateScoreView = function() {
 
     if(this._players !== null){
 

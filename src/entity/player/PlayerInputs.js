@@ -59,13 +59,13 @@ Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "Q", {
 });
 
 
-Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "shoot", {
+Object.defineProperty(theLivingLab.entity.PlayerInputs.prototype, "space", {
     /**
      * @this theLivingLab.entity.PlayerInputs
      * @ignore
      */
     get : function() {
-        return 'space' || 'm';
+        return this._keys['space'] || 'm';
     }
 });
 
