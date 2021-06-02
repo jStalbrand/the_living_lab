@@ -55,7 +55,7 @@ theLivingLab.scene.Game.prototype.constructor = theLivingLab.scene.Game;
 theLivingLab.scene.Game.prototype.init = function() {
     
     rune.scene.Scene.prototype.init.call(this);
-    this.cameras.getCamera(0).debug = true;
+    this.cameras.getCamera(0).debug = false;
     this._initCamera();
     this._initBackground();
     this._initHUD();
